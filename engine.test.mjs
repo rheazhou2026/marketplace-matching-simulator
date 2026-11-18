@@ -1,0 +1,5 @@
+import assert from 'node:assert/strict';import {makeScenario,Marketplace,assignmentDP,runComparison} from './engine.mjs';
+assert.deepEqual(makeScenario(42),makeScenario(42));assert.notDeepEqual(makeScenario(42),makeScenario(43));
+assert.deepEqual(assignmentDP([[-5,10],[2,-3]]),[[0,0],[1,1]]);assert.deepEqual(assignmentDP([[Infinity,-1],[-1,Infinity]]),[[0,1],[1,0]]);assert.deepEqual(assignmentDP([[4,5]]),[]);
+for(const seed of [1,42,920]){const {lcam,dvam}=runComparison(seed,45);for(const m of [lcam,dvam]){const z=m.snapshot();assert.equal(z.tick,45);assert.ok(z.metrics.matched<=z.metrics.requests);assert.ok(z.metrics.completed<=z.metrics.matched);assert.equal(z.metrics.requests,z.metrics.matched+z.metrics.cancelled+z.backlog);assert.equal(m.history.length,45);assert.ok(m.drivers.every(d=>d.x>=0&&d.x<=1&&d.y>=0&&d.y<=1));}assert.equal(lcam.metrics.requests,dvam.metrics.requests);}
+const s=makeScenario(9,30),same=new Marketplace(s,'LCAM'),zero=new Marketplace(s,'DVAM',0);for(let i=0;i<30;i++){same.step();zero.step();}assert.deepEqual(same.trips,zero.trips,'lambda=0 should reproduce LCAM');console.log('All simulator tests passed.');
