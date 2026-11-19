@@ -2,7 +2,7 @@
 
 An interactive, **dependency-free** browser simulation of rider–driver dispatch, based on Rhea Zhou's *Learning to Match: Uber's Sequential Marketplace Optimization Problem*.
 
-[Open the interactive simulator](https://rheazhou2026.github.io/marketplace-matching-simulator/)
+**[Open the interactive simulator](https://rheazhou2026.github.io/marketplace-matching-simulator/)** · **[Read the original research paper (PDF)](./Learning_to_Match_Ubers_Sequential_Marketplace_Optimization_Problem.pdf)**
 
 ## What this demonstrates
 
@@ -12,6 +12,17 @@ An interactive, **dependency-free** browser simulation of rider–driver dispatc
 - **Controlled comparisons:** both policies see identical seeded incoming requests. Different decisions cause different state trajectories. Change seed and future-value weight λ; inspect matched trips, completed trips, cancellations, pickup times, and fulfillment.
 
 > **Scientific limitations:** The feature weights, spatial demand, travel times, acceptance/cancellation proxies, and temporal-difference updates are illustrative—not trained from real data. The DP algorithm is an exact solver for the *small synthetic batch*, not a large-scale dispatch algorithm. DVAM is **Bellman-inspired**, not a reproduction of Uber's production reinforcement-learning model, nor a validation of the real-world figures cited in the paper. A future-aware policy may perform worse than LCAM. Results are not causal estimates of Uber outcomes.
+
+## Research paper
+
+**[Learning to Match: Uber's Sequential Marketplace Optimization Problem — Rhea Zhou (PDF)](./Learning_to_Match_Ubers_Sequential_Marketplace_Optimization_Problem.pdf)**
+
+The accompanying original three-page paper formalizes sequential marketplace allocation under uncertainty and contrasts two approaches:
+
+1. **LCAM:** predicting costs for feasible rider–driver pairs, then solving a constrained bipartite matching problem to minimize immediate assignment cost.
+2. **DVAM:** augmenting immediate matching costs with estimates of future driver-state value, motivated by the Bellman principle and temporal-difference learning.
+
+The paper also discusses nonstationary demand, marketplace feedback, missing counterfactuals, delayed rewards, and the difficulty of scaling matching under latency constraints. The browser app is an **educational illustration of these ideas**, not an implementation or empirical replication of Uber's internal production systems.
 
 ## Run locally
 
@@ -33,10 +44,15 @@ Includes deterministic event generation, exact assignment constraints, marketpla
 
 ## Publish on GitHub Pages
 
-1. Create a new **public** GitHub repository named `marketplace-matching-simulator` under `rheazhou2026`.
-2. Upload all files in this folder to the **root** of its `main` branch (or push the Git repository with `git push`).
-3. Go to **Settings → Pages → Build and deployment**, select **Deploy from a branch**, `main`, `/ (root)` and save.
-4. Once deployed, the demo will be at https://rheazhou2026.github.io/marketplace-matching-simulator/ .
+This project is hosted at [rheazhou2026/marketplace-matching-simulator](https://github.com/rheazhou2026/marketplace-matching-simulator/).
+
+To update the live repository's README and add the paper:
+
+1. Upload this Markdown file to the repository root **as `README.md`**, replacing the existing README.
+2. Upload `Learning_to_Match_Ubers_Sequential_Marketplace_Optimization_Problem.pdf` to that **same root directory**, with the exact filename shown.
+3. Commit both files to `main`. The PDF links above will then work directly in GitHub.
+
+The interactive simulator is published at https://rheazhou2026.github.io/marketplace-matching-simulator/ . If deploying from scratch, configure **Settings → Pages → Deploy from a branch → `main` → `/ (root)`**.
 
 ## Files
 
@@ -45,9 +61,10 @@ Includes deterministic event generation, exact assignment constraints, marketpla
 - `app.mjs` — interactive rendering and playback
 - `engine.mjs` — seeded arrival stream, dispatch logic, TD-inspired value update, exact bipartite assignment
 - `engine.test.mjs` — simulation correctness checks
+- `Learning_to_Match_Ubers_Sequential_Marketplace_Optimization_Problem.pdf` — original research paper, with problem formulation and references
 
 ## Research basis
 
-See the accompanying original 3-page PDF for the LCAM/DVAM formulations and citations to Uber Engineering, Sutton (1988), Xu et al. (2018), Qin et al. (2020), and Alonso-Mora et al. (2017).
+See **[the original paper](./Learning_to_Match_Ubers_Sequential_Marketplace_Optimization_Problem.pdf)** for the LCAM/DVAM formulations and citations to Uber Engineering, Sutton (1988), Xu et al. (2018), Qin et al. (2020), and Alonso-Mora et al. (2017).
 
 **Author:** Rhea Zhou · University of Pennsylvania, M&T '30. Independent educational project; no affiliation with Uber.
