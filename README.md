@@ -1,8 +1,8 @@
 # Learning to Match: A Sequential Marketplace Simulator
 
-An interactive, **dependency-free** browser simulation of rider–driver dispatch, based on Rhea Zhou's *Learning to Match: Uber's Sequential Marketplace Optimization Problem* (Wharton Analytics Fellows technical challenge, September 2026).
+An interactive, **dependency-free** browser simulation of rider–driver dispatch, based on Rhea Zhou's *Learning to Match: Uber's Sequential Marketplace Optimization Problem*.
 
-**[Open the interactive simulator](https://rheazhou2026.github.io/marketplace-matching-simulator/)
+[Open the interactive simulator](https://rheazhou2026.github.io/marketplace-matching-simulator/)
 
 ## What this demonstrates
 
